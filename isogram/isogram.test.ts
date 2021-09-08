@@ -1,4 +1,4 @@
-import { isIsogram } from "./isongram";
+import { isIsogram } from "./isogram";
 
 describe('isogram', () => {
     it('returns true, when all the letters in a string are unique', () => {
