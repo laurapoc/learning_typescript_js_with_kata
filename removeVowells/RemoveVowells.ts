@@ -9,11 +9,33 @@
 // Note: for this kata y isn't considered a vowel.
 
 
+enum vowels {
+  A = "a",
+  E = "e",
+  I = "i",
+  O = "o",
+  U = "u",
+}
+
 export class Kata {
-    static disemvowel(str: string): string {
-      return str;
-    }
+  static disemvowel(str: string): string {
+    let stringArray = str.split("");
+    let vowellsRemovedString = "";
+    stringArray.forEach((char) => {
+      if (
+        char.toLocaleLowerCase() === vowels.A ||
+        char.toLocaleLowerCase() === vowels.E ||
+        char.toLocaleLowerCase() === vowels.I ||
+        char.toLocaleLowerCase() === vowels.O ||
+        char.toLocaleLowerCase() === vowels.U
+      ) {
+        stringArray = stringArray.filter((el) => el !== char);
+      }
+    });
+    vowellsRemovedString = stringArray.join("");
+
+    return vowellsRemovedString;
   }
+}
 
-
-  console.log(Kata.disemvowel("This website is for losers LOL!"))
+console.log(Kata.disemvowel("This website is for losers LOL!"));
