@@ -27,7 +27,7 @@
 
 // NOTE: There will also be lists tested of lengths upwards of 10,000,000 elements. Be sure your code doesn't time out.
 
-// TODO: make algorythm more simple
+// TODO: make algorithm more simple
 export function sumPairs(ints: number[], s: number): [number, number] | void {
     let sum = 0;
     let indexRez: [number, number] | undefined = undefined;
