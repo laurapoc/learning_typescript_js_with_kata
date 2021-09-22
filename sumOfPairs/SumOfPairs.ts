@@ -29,36 +29,57 @@
 
 // TODO: make algorithm more simple
 export function sumPairs(ints: number[], s: number): [number, number] | void {
-    let sum = 0;
-    let indexRez: [number, number] | undefined = undefined;
-    let numPair: [number, number] | undefined = undefined;
-  
-    for (let i = 0; i < ints.length && (!indexRez || indexRez[1] > i); i++) {
-      for (let j = i + 1; j < ints.length; j++) {
-        sum = ints[i] + ints[j];
-        if (sum === s && !indexRez) {
-          indexRez = [i, j];
-          numPair = [ints[indexRez[0]], ints[indexRez[1]]];
-        } else if (sum === s && indexRez) {
-          indexRez = indexRez[1] > j ? [i, j] : indexRez;
-          numPair = [ints[indexRez[0]], ints[indexRez[1]]];
-          break;
-        }
+  for (let i = 1; i < ints.length; i++) {
+    for (let j = 0; j < i; j++) {
+      if (s - ints[i] === ints[j]) {
+        return [ints[j], ints[i]];
       }
     }
-  
-    return numPair;
   }
+}
 
+// export function sumPairs(ints: number[], s: number): [number, number] | void {
+//     const { length } = ints;
+//     for (let i = 1; i < length; i++) {
+//       for (let j = 0; j < i; j++) {
+//         if (ints[i] + ints[j] === s) return [ints[j], ints[i]];
+//       }
+//     }
+// }
+
+
+// export function sumPairs(ints: number[], s: number): [number, number] | void {
+//     let sum = 0;
+//     let indexRez: [number, number] | undefined = undefined;
+//     let numPair: [number, number] | undefined = undefined;
+
+//     for (let i = 0; i < ints.length && (!indexRez || indexRez[1] > i); i++) {
+//       for (let j = i + 1; j < ints.length; j++) {
+//         sum = ints[i] + ints[j];
+//         if (sum === s && !indexRez) {
+//           indexRez = [i, j];
+//           numPair = [ints[indexRez[0]], ints[indexRez[1]]];
+//         } else if (sum === s && indexRez) {
+//           indexRez = indexRez[1] > j ? [i, j] : indexRez;
+//           numPair = [ints[indexRez[0]], ints[indexRez[1]]];
+//           break;
+//         }
+//       }
+//     }
+
+//     return numPair;
+//   }
 
 const l1: number[] = [1, 4, 8, 7, 3, 15];
 const l2: number[] = [1, -2, 3, 0, -6, 1];
 const l3: number[] = [20, -13, 40];
 const l4: number[] = [1, 2, 3, 4, 1, 0];
 const l5: number[] = [10, 5, 2, 3, 7, 5];
+const l6: number[] = [1, 2, 3, 4, 1, 0];
 
 console.log(sumPairs(l1, 8));
 console.log(sumPairs(l2, -6));
 console.log(sumPairs(l3, -7));
 console.log(sumPairs(l4, 2));
 console.log(sumPairs(l5, 10));
+console.log(sumPairs(l6, 2));
