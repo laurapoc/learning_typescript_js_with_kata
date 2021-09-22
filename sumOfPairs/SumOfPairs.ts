@@ -28,15 +28,36 @@
 // NOTE: There will also be lists tested of lengths upwards of 10,000,000 elements. Be sure your code doesn't time out.
 
 // TODO: make algorithm more simple
+
+// MOST EFFICIENT SOLUTION:
 export function sumPairs(ints: number[], s: number): [number, number] | void {
-  let cache: number[] = []
-  for (let i in ints) {
-    if (cache.includes(s - ints[i])) {
-      return [s - ints[i], ints[i]];
+    const seen = new Set();
+    for (const n of ints) {
+      if (seen.has(s - n)) return [s - n, n];
+      seen.add(n);
     }
-    cache.push(ints[i]);
   }
-}
+
+
+// export function sumPairs(ints: number[], s: number): [number, number] | void {
+//   let cache: Map<number, number> = new Map();
+//   for (let i in ints) {
+//     if (cache.has(s - ints[i])) {
+//       return [s - ints[i], ints[i]];
+//     }
+//     cache.set(ints[i], s - ints[i]);
+//   }
+// }
+
+// export function sumPairs(ints: number[], s: number): [number, number] | void {
+//   let cache: number[] = []
+//   for (let i in ints) {
+//     if (cache.includes(s - ints[i])) {
+//       return [s - ints[i], ints[i]];
+//     }
+//     cache.push(ints[i]);
+//   }
+// }
 
 // export function sumPairs(ints: number[], s: number): [number, number] | void {
 //   for (let i = 1; i < ints.length; i++) {
@@ -85,6 +106,7 @@ const l3: number[] = [20, -13, 40];
 const l4: number[] = [1, 2, 3, 4, 1, 0];
 const l5: number[] = [10, 5, 2, 3, 7, 5];
 const l6: number[] = [1, 2, 3, 4, 1, 0];
+const l7: number[] = [0, 2, 0];
 
 console.log(sumPairs(l1, 8));
 console.log(sumPairs(l2, -6));
@@ -92,3 +114,4 @@ console.log(sumPairs(l3, -7));
 console.log(sumPairs(l4, 2));
 console.log(sumPairs(l5, 10));
 console.log(sumPairs(l6, 2));
+console.log(sumPairs(l7, 0));
