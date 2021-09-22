@@ -29,14 +29,24 @@
 
 // TODO: make algorithm more simple
 export function sumPairs(ints: number[], s: number): [number, number] | void {
-  for (let i = 1; i < ints.length; i++) {
-    for (let j = 0; j < i; j++) {
-      if (s - ints[i] === ints[j]) {
-        return [ints[j], ints[i]];
-      }
+  let cache: number[] = []
+  for (let i in ints) {
+    if (cache.includes(s - ints[i])) {
+      return [s - ints[i], ints[i]];
     }
+    cache.push(ints[i]);
   }
 }
+
+// export function sumPairs(ints: number[], s: number): [number, number] | void {
+//   for (let i = 1; i < ints.length; i++) {
+//     for (let j = 0; j < i; j++) {
+//       if (s - ints[i] === ints[j]) {
+//         return [ints[j], ints[i]];
+//       }
+//     }
+//   }
+// }
 
 // export function sumPairs(ints: number[], s: number): [number, number] | void {
 //     const { length } = ints;
@@ -46,7 +56,6 @@ export function sumPairs(ints: number[], s: number): [number, number] | void {
 //       }
 //     }
 // }
-
 
 // export function sumPairs(ints: number[], s: number): [number, number] | void {
 //     let sum = 0;
