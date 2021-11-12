@@ -1,7 +1,7 @@
 // 100th Kata
 // You are given a message (text) that you choose to read in a mirror (weirdo). Return what you would see, complete with the mirror frame. Example:
 
-import { forEachChild } from "typescript";
+import { forEachChild, isLineBreak } from "typescript";
 
 // 'Hello World'
 
@@ -17,7 +17,10 @@ import { forEachChild } from "typescript";
 export function mirror(text: string): string {
   let reversedStringArray: Array<string> = [];
   const star = "*";
+  let space = " ";
+  let result = "";
   let longestWordInArray = "";
+
   text.split(" ").forEach((word) => {
     if (word.length > longestWordInArray.length) {
       longestWordInArray = word;
@@ -25,14 +28,19 @@ export function mirror(text: string): string {
     reversedStringArray.push(word.split("").reverse().join(""));
   });
 
-  return (
-    star.repeat(longestWordInArray.length) +
-    "****\n* " +
-    reversedStringArray.join(" *\n* ") +
-    " *\n****" +
-    star.repeat(longestWordInArray.length)
-  );
+  result = star.repeat(longestWordInArray.length + 4) + "\n";
+  reversedStringArray.forEach((word) => {
+    let charDifference = 0;
+    charDifference = longestWordInArray.length - word.length;
+    let line = "* " + word + space.repeat(charDifference) + " *\n";
+    result = result + line;
+  });
+  result = result +
+  star.repeat(4 + longestWordInArray.length);;
+
+  return result;
 }
 
-console.log(mirror("Hello World"));
-console.log(mirror("Codewars"));
+// console.log(mirror("Hello World"));
+// console.log(mirror("Codewars"));
+console.log(mirror("ycgg uuy mzneolm"));
